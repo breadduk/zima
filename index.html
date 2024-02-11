@@ -42,7 +42,7 @@
         .photo img {
             width: 100%;
             height: 100%;
-            object-fit: cover; 
+            object-fit: cover;
         }
 
         .counter {
@@ -97,7 +97,7 @@
         </div>
         <div class="counter">
             <p class="counter-text">Liczba odwiedzin:</p>
-            <span class="counter-number">0</span>
+            <span class="counter-number" id="visitCount">0</span>
         </div>
     </div>
     <script>
@@ -114,16 +114,17 @@
             const counterNumber = document.querySelector('.counter-number');
             
             
-            let counterValue = 0;
+            let counterValue = localStorage.getItem('visitCount') || 0;
             
             
-            function updateCounter() {
-                counterValue++;
-                counterNumber.textContent = counterValue;
-            }
+            counterNumber.textContent = counterValue;
             
             
-            setInterval(updateCounter, 1000);
+            counterValue++;
+            counterNumber.textContent = counterValue;
+            
+            
+            localStorage.setItem('visitCount', counterValue);
         });
     </script>
 </body>
