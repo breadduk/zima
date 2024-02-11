@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona zzima</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            overflow: hidden; 
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2em;
+        }
+
+        .photo-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .photo {
+            width: 200px;
+            height: 200px;
+            position: relative; 
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+
+        .counter {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .counter-text {
+            font-size: 1.2em;
+        }
+
+        .counter-number {
+            font-size: 2em;
+            color: #ff4500; 
+            animation: counter-motion 1s infinite alternate; 
+        }
+
+        @keyframes counter-motion {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-5px);
+            }
+        }
+
+        
+        @keyframes photo-motion {
+            0% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+            100% {
+                transform: translateX(-5px);
+            }
+        }
+
+        .photo.animated {
+            animation: photo-motion 5s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ZIMA</h1>
+        <div class="photo-grid">
+            <div class="photo animated"><img src="zdjecie3.jpg" alt="zdj1"></div>
+            <div class="photo animated"><img src="zdjecie3.jpg" alt="zdj2"></div>
+            <div class="photo animated"><img src="zdjecie3.jpg" alt="zdj3"></div>
+        </div>
+        <div class="counter">
+            <p class="counter-text">Liczba odwiedzin:</p>
+            <span class="counter-number">0</span>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            const photos = document.querySelectorAll('.photo');
+            
+            
+            photos.forEach(function(photo) {
+                photo.classList.add('animated');
+            });
+            
+            
+            const counterNumber = document.querySelector('.counter-number');
+            
+            
+            let counterValue = 0;
+            
+            
+            function updateCounter() {
+                counterValue++;
+                counterNumber.textContent = counterValue;
+            }
+            
+            
+            setInterval(updateCounter, 1000);
+        });
+    </script>
+</body>
+</html>
